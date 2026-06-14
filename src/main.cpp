@@ -30,7 +30,7 @@ Commands:
     build   Compiles the project using CMake.
     run     Runs the compiled executable from the build directory.
     license Genorates a license. E.g, `cgen license --mit`
-    version
+    version Shows version info
 
 Flags:
     init:
