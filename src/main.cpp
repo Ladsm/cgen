@@ -6,6 +6,7 @@
 #include "textblobs.hpp"
 #include "init.hpp"
 #include "add.hpp"
+#include "remove.hpp"
 #include "fflib.hpp"
 
 int main(int argc, char* argv[]) {
@@ -109,6 +110,22 @@ Flags:
         }
         add addition(is_header, is_class, is_both, is_struct, filename);
         addition.run();
+    }
+
+    else if (command == "remove") {
+        if (args.size() < 3) {
+            std::cout << "Error: Please provide a filename.\n";
+            return 1;
+        }
+        const std::string filename = args[2];
+        bool is_header = false;
+        bool is_both = false;
+        for (size_t i = 3; i < args.size(); i++) {
+            if (args[i] == "-h" || args[i] == "--hpp") is_header = true;
+            else if (args[i] == "-b" || args[i] == "--both") is_both = true;
+        }
+        removeCgen Remove(is_header, is_both, filename);
+        Remove.run();
     }
 
     else if (command == "clean") {
