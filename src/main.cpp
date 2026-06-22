@@ -27,6 +27,7 @@ Commands:
     init    Makes a new project. E.g., `cgen init my_project -bin`
     add     Adds a source file, header, or both to CMakeLists.txt.
             Do not include file extensions. E.g., `cgen add file --both`
+    remove  Like add but insted of adding a file removes it.
     clean   Wipes the build directory.
     build   Compiles the project using CMake.
     run     Runs the compiled executable from the build directory.
@@ -44,6 +45,10 @@ Flags:
         -b, --both    Makes both a cpp file and a header file
         --class       Creates a new class (cpp and header file)
         --struct      Creates a new struct (cpp and header file)
+    
+    remove:
+        -h, --hpp     Removes a header file instead of a cpp file.
+        -b, --both    Removes both a cpp file and a header file.
     
     license:
         --mit         MIT license
