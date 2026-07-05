@@ -33,6 +33,7 @@ Commands:
     run     Runs the compiled executable from the build directory.
     license Genorates a license. E.g, `cgen license --mit`
     version Shows version info
+    hlib     Adds header library of choice
 
 Flags:
     init:
@@ -57,6 +58,10 @@ Flags:
         --apache2     Apache 2.0 Apache 
         --bsd2        2-Clause BSD License
         --bsd3        3-Clause BSD License
+
+    hlib:
+        --fflib       Adds the friendly file library header file
+        --mktui       Adds the make terminal user interface header file
 )";
         return 0;
     }
@@ -234,6 +239,29 @@ Flags:
         return 0;
     }
 
+    else if (command == "hlib") { // and yes these will only be my librarys because I use these
+        if (args.size() < 3) {
+            std::cout << "Error: Please provide a library flag\n";
+            return 1;
+        }
+        const std::string libraryname = args[2];
+        if (libraryname == "--fflib") {
+            fflib::cd("include");
+            fflib::touch("fflib.hpp", fflibstring());
+            fflib::cddotdot();
+        }
+        else if (libraryname == "--mktui") {
+            fflib::cd("include");
+            fflib::touch("mktui.h", mktui());
+            fflib::cddotdot();
+        }
+        else {
+            std::cout << "No library with that name\n";
+            return 1;
+        }
+        return 0;
+    }
+    
     else {
         std::cout << "Unknown command: " << command << "\n";
         return 1;

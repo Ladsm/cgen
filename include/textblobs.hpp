@@ -9,3 +9,5 @@ std::string gpl3();
 std::string apache2();
 std::string bsd2();
 std::string bsd3();
+std::string mktui();
+std::string fflibstring();
